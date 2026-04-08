@@ -1,0 +1,227 @@
+/* =============================================
+   THE KEEP — Login / Cadastro
+   Compatível com the-keep-profile.css
+   ============================================= */
+
+/* ---- Reset básico ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ---- Variáveis (mesma paleta do projeto) ---- */
+:root {
+  --bg:        #0e0e12;
+  --surface:   #1a1a22;
+  --border:    #2e2e3a;
+  --accent:    #144fd8;
+  --accent-h:  #144fd8;
+  --text:      #e8e8f0;
+  --text-muted:#888899;
+  --error:     #e05555;
+  --success:   #4caf7d;
+  --radius:    10px;
+  --topbar-h:  64px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Topbar (idêntica ao projeto) ---- */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: var(--topbar-h);
+  background: #13131a;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 0 24px;
+}
+
+.brand-logo {
+  height: 40px;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  gap: 18px;
+}
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+.search-bar {
+  margin-left: auto;
+}
+.search-bar input {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  padding: 8px 14px;
+  font-size: 0.88rem;
+  width: 220px;
+  outline: none;
+  transition: border-color .2s;
+}
+.search-bar input:focus { border-color: var(--accent); }
+
+/* ---- Layout principal ---- */
+.login-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+}
+
+/* ---- Card central ---- */
+.auth-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 420px;
+  padding: 32px 36px;
+  box-shadow: 0 8px 40px rgba(0,0,0,.5);
+}
+
+/* ---- Abas ---- */
+.auth-tabs {
+  display: flex;
+  gap: 0;
+  margin-bottom: 28px;
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 9px 0;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.tab-btn.active {
+  background: var(--accent);
+  color: #0e0e12;
+}
+.tab-btn:not(.active):hover { color: var(--text); }
+
+/* ---- Formulário ---- */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn .25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.form-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.form-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: -8px;
+}
+
+/* ---- Campos ---- */
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field-group label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.field-group input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--text);
+  padding: 11px 14px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+.field-group input::placeholder { color: #555566; }
+.field-group input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(201,168,76,.15);
+}
+
+/* ---- Botão principal ---- */
+.btn-primary {
+  background: var(--accent);
+  color: #0e0e12;
+  border: none;
+  border-radius: 7px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 12px;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background .2s, transform .1s;
+}
+.btn-primary:hover  { background: var(--accent-h); }
+.btn-primary:active { transform: scale(.98); }
+
+/* ---- Link de alternância ---- */
+.switch-hint {
+  text-align: center;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+.switch-hint a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.switch-hint a:hover { text-decoration: underline; }
+
+/* ---- Mensagens de feedback ---- */
+.msg {
+  padding: 10px 14px;
+  border-radius: 7px;
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+.msg.erro   { background: rgba(224,85,85,.15);  border: 1px solid var(--error);   color: var(--error);   }
+.msg.sucesso{ background: rgba(76,175,125,.15); border: 1px solid var(--success); color: var(--success); }
+
+/* ---- Responsivo ---- */
+@media (max-width: 480px) {
+  .auth-card { padding: 24px 20px; }
+  .search-bar input { width: 140px; }
+  .nav-links { display: none; }
+}
