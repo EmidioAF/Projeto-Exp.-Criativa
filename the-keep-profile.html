@@ -8,79 +8,220 @@
 </head>
 <body>
   <header class="topbar">
-      <div class="brand">
-        <img src="thelogo.PNG" alt="The Keep Logo" class="brand-logo"> 
+    <div class="brand">
+      <img src="thelogo.PNG" alt="The Keep Logo" class="brand-logo">
+    </div>
+    <nav class="nav-links">
+      <a href="#perfil">Perfil</a>
+      <a href="#menu-principal">Menu Principal</a>
+      <a href="the-keep-login.html">Login</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" placeholder="Pesquisar jogos, reviews..." />
+    </div>
+  </header>
+
+  <main class="profile-layout">
+    <section class="profile-card" id="perfil">
+
+      <div class="edit-profile-btn-wrapper">
+        <button class="edit-profile-btn" id="openEditModal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          Editar Perfil
+        </button>
       </div>
-      <nav class="nav-links">
-        <a href="#perfil">Perfil</a>
-        <a href="#menu-principal">Menu Principal</a>
-        <a href="the-keep-login.html">Login</a> 
-      </nav>
-      <div class="search-bar">
-        <input type="text" placeholder="Pesquisar jogos, reviews..." />
+
+      <div class="user-info">
+        <div class="avatar">
+          <img src="profile.jpg" alt="Foto de perfil de Julio" id="profileAvatarDisplay">
+        </div>
+        <h1 id="profileNameDisplay">Julio</h1>
       </div>
-    </header>
 
-    <main class="profile-layout">
-      <section class="profile-card" id="perfil">
-        <div class="user-info">
-          <div class="avatar"><img src="profile.jpg" alt="Foto de perfil de Julio"></div> 
-          <h1>Julio</h1>
+      <div class="favorites">
+        <h2>Jogos Favoritos</h2>
+        <div class="games-grid" id="favoritesGrid">
+          <div class="game-item"><img src="https://via.placeholder.com/150x200?text=The+Witcher+3" alt="The Witcher 3: Wild Hunt" data-fav="0"></div>
+          <div class="game-item"><img src="https://via.placeholder.com/150x200?text=Red+Dead+Redemption+2" alt="Red Dead Redemption 2" data-fav="1"></div>
+          <div class="game-item"><img src="BOTW.png" alt="The Legend of Zelda: Breath of the Wild" data-fav="2"></div>
+          <div class="game-item"><img src="https://via.placeholder.com/150x200?text=Cyberpunk+2077" alt="Cyberpunk 2077" data-fav="3"></div>
         </div>
+      </div>
 
-        <div class="favorites">
-          <h2>Jogos Favoritos</h2>
-          <div class="games-grid">
-            <div class="game-item"><img src="https://via.placeholder.com/150x200?text=The+Witcher+3" alt="The Witcher 3: Wild Hunt"></div> 
-            <div class="game-item"><img src="https://via.placeholder.com/150x200?text=Red+Dead+Redemption+2" alt="Red Dead Redemption 2"></div> 
-            <div class="game-item"><img src="BOTW.png" alt="The Legend of Zelda: Breath of the Wild"></div> 
-            <div class="game-item"><img src="https://via.placeholder.com/150x200?text=Cyberpunk+2077" alt="Cyberpunk 2077"></div> 
+      <div class="current-last-games">
+        <div class="game-playing">
+          <h3>Jogando Agora</h3>
+          <div class="game-item cover">
+            <img src="https://via.placeholder.com/150x200?text=Horizon+Forbidden+West" alt="Horizon Forbidden West" id="currentGameImg">
+            <p id="currentGameName">Horizon Forbidden West</p>
           </div>
         </div>
-
-        <div class="current-last-games">
-          <div class="game-playing">
-            <h3>Jogando Agora</h3>
-            <div class="game-item cover">
-              <img src="https://via.placeholder.com/150x200?text=Horizon+Forbidden+West" alt="Horizon Forbidden West"> 
-              <p>Horizon Forbidden West</p>
-            </div>
-          </div>
-          <div class="last-played">
-            <h3>Último Jogado</h3>
-            <div class="game-item cover">
-              <img src="GOWrag.jpg" alt="God of War Ragnarök"> 
-              <p>God of War Ragnarök</p>
-            </div>
+        <div class="last-played">
+          <h3>Último Jogado</h3>
+          <div class="game-item cover">
+            <img src="GOWrag.jpg" alt="God of War Ragnarök" id="lastGameImg">
+            <p id="lastGameName">God of War Ragnarök</p>
           </div>
         </div>
+      </div>
 
-        <div class="last-review">
-          <h2>Última Review</h2>
-          <article class="review-card">
-            <img src="DELI.jpg" alt="Disco Elysium" class="review-cover"> 
-            <div class="review-content">
-              <div class="review-meta">
-                <h3>Disco Elysium</h3>
-                <span class="rating">5.0</span>
-              </div>
-              <p>Diálogo afiado e escolhas profundas. Um dos melhores RPGs narrativos da última década.</p>
-              <div class="review-tags">RPG • Narrativa • Investigação</div>
+      <div class="last-review">
+        <h2>Review em Destaque</h2>
+        <article class="review-card" id="featuredReviewCard">
+          <img src="DELI.jpg" alt="Disco Elysium" class="review-cover" id="featuredReviewImg">
+          <div class="review-content">
+            <div class="review-meta">
+              <h3 id="featuredReviewTitle">Disco Elysium</h3>
+              <span class="rating" id="featuredReviewRating">5.0</span>
             </div>
-          </article>
-        </div>
+            <p id="featuredReviewText">Diálogo afiado e escolhas profundas. Um dos melhores RPGs narrativos da última década.</p>
+            <div class="review-tags" id="featuredReviewTags">RPG • Narrativa • Investigação</div>
+          </div>
+        </article>
+      </div>
 
-        <div class="profile-sections">
-          <a href="the-keep-reviews.html" class="section-link">
-            <h3>Ver Todas as Reviews</h3>
-            <p>Confira todas as reviews do usuário</p>
-          </a>
-          <a href="the-keep-games.html" class="section-link">
-            <h3>Jogos Finalizados</h3>
-            <p>Veja todos os jogos completados</p>
-      </a>
+      <div class="profile-sections">
+        <a href="the-keep-reviews.html" class="section-link">
+          <h3>Ver Todas as Reviews</h3>
+          <p>Confira todas as reviews do usuário</p>
+        </a>
+        <a href="the-keep-games.html" class="section-link">
+          <h3>Jogos Finalizados</h3>
+          <p>Veja todos os jogos completados</p>
+        </a>
+      </div>
+
+    </section>
+  </main>
+
+  <div class="modal-overlay" id="editModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h2>Editar Perfil</h2>
+        <button class="modal-close" id="closeEditModal">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <div class="modal-tabs">
+        <button class="tab-btn active" data-tab="tab-identity">Identidade</button>
+        <button class="tab-btn" data-tab="tab-favorites">Favoritos</button>
+        <button class="tab-btn" data-tab="tab-current">Jogando</button>
+        <button class="tab-btn" data-tab="tab-review">Review</button>
+      </div>
+
+      <div class="tab-content active" id="tab-identity">
+        <div class="edit-section">
+          <label class="edit-label">Foto de Perfil</label>
+          <div class="avatar-edit-row">
+            <div class="avatar avatar-preview-small">
+              <img src="profile.jpg" alt="Preview" id="avatarPreview">
+            </div>
+            <div class="avatar-inputs">
+              <input type="text" class="edit-input" id="avatarUrlInput" placeholder="URL da imagem de perfil">
+              <span class="edit-hint">Cole a URL da sua foto de perfil</span>
+            </div>
+          </div>
         </div>
-      </section>
-    </main>
+        <div class="edit-section">
+          <label class="edit-label">Nome de Usuário</label>
+          <input type="text" class="edit-input" id="usernameInput" placeholder="Seu nome" value="Julio">
+        </div>
+        <div class="edit-section">
+          <label class="edit-label">E-mail</label>
+          <input type="email" class="edit-input" id="emailInput" placeholder="seu@email.com" value="">
+        </div>
+        <div class="edit-divider"></div>
+        <div class="edit-section">
+          <label class="edit-label">Senha Atual</label>
+          <input type="password" class="edit-input" id="currentPasswordInput" placeholder="Digite sua senha atual">
+        </div>
+        <div class="edit-section">
+          <label class="edit-label">Nova Senha</label>
+          <input type="password" class="edit-input" id="newPasswordInput" placeholder="Digite a nova senha">
+        </div>
+        <div class="edit-section">
+          <label class="edit-label">Confirmar Nova Senha</label>
+          <input type="password" class="edit-input" id="confirmPasswordInput" placeholder="Repita a nova senha">
+          <span class="edit-hint password-error" id="passwordError"></span>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-favorites">
+        <p class="edit-hint" style="margin-bottom: 16px;">Altere a URL e o nome de cada jogo favorito.</p>
+        <div class="favorites-edit-list" id="favoritesEditList"></div>
+      </div>
+
+      <div class="tab-content" id="tab-current">
+        <div class="edit-section">
+          <label class="edit-label">Jogando Agora</label>
+          <input type="text" class="edit-input" id="currentGameNameInput" placeholder="Nome do jogo" value="Horizon Forbidden West">
+          <input type="text" class="edit-input" id="currentGameImgInput" placeholder="URL da capa" style="margin-top: 8px;" value="https://via.placeholder.com/150x200?text=Horizon+Forbidden+West">
+          <div class="game-img-preview-row">
+            <img src="https://via.placeholder.com/150x200?text=Horizon+Forbidden+West" alt="Preview" id="currentGamePreview" class="game-preview-img">
+          </div>
+        </div>
+        <div class="edit-section">
+          <label class="edit-label">Último Jogado</label>
+          <input type="text" class="edit-input" id="lastGameNameInput" placeholder="Nome do jogo" value="God of War Ragnarök">
+          <input type="text" class="edit-input" id="lastGameImgInput" placeholder="URL da capa" style="margin-top: 8px;" value="GOWrag.jpg">
+          <div class="game-img-preview-row">
+            <img src="GOWrag.jpg" alt="Preview" id="lastGamePreview" class="game-preview-img">
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-review">
+        <p class="edit-hint" style="margin-bottom: 16px;">Escolha qual review ficará em destaque no perfil.</p>
+        <div class="reviews-select-list" id="reviewsSelectList">
+          <div class="review-option active" data-review-id="0">
+            <img src="DELI.jpg" alt="Disco Elysium" class="review-option-img">
+            <div class="review-option-info">
+              <span class="review-option-title">Disco Elysium</span>
+              <span class="review-option-rating">⭐ 5.0</span>
+              <span class="review-option-tags">RPG • Narrativa • Investigação</span>
+            </div>
+            <div class="review-selected-badge">Em Destaque</div>
+          </div>
+          <div class="review-option" data-review-id="1">
+            <img src="GOWrag.jpg" alt="God of War Ragnarök" class="review-option-img">
+            <div class="review-option-info">
+              <span class="review-option-title">God of War Ragnarök</span>
+              <span class="review-option-rating">⭐ 4.8</span>
+              <span class="review-option-tags">Ação • Aventura • Mitologia</span>
+            </div>
+            <div class="review-selected-badge">Em Destaque</div>
+          </div>
+          <div class="review-option" data-review-id="2">
+            <img src="BOTW.png" alt="Breath of the Wild" class="review-option-img">
+            <div class="review-option-info">
+              <span class="review-option-title">The Legend of Zelda: Breath of the Wild</span>
+              <span class="review-option-rating">⭐ 5.0</span>
+              <span class="review-option-tags">Aventura • Open World • Puzzle</span>
+            </div>
+            <div class="review-selected-badge">Em Destaque</div>
+          </div>
+          <div class="review-option" data-review-id="3">
+            <img src="https://via.placeholder.com/150x200?text=Cyberpunk+2077" alt="Cyberpunk 2077" class="review-option-img">
+            <div class="review-option-info">
+              <span class="review-option-title">Cyberpunk 2077</span>
+              <span class="review-option-rating">⭐ 4.2</span>
+              <span class="review-option-tags">RPG • FPS • Futuro</span>
+            </div>
+            <div class="review-selected-badge">Em Destaque</div>
+          </div>
+        </div>
+        <p class="edit-hint" style="margin-top: 16px;">
+        </p>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-cancel" id="cancelEdit">Cancelar</button>
+        <button class="btn-save" id="saveEdit">Salvar Alterações</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="the-keep-profile.js"></script>
 </body>
 </html>
