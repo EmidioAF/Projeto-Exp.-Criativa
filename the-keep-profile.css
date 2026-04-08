@@ -1,0 +1,512 @@
+:root {
+  color-scheme: dark;
+  --bg: #0f1320;
+  --surface: #161c2f;
+  --surface-soft: #1f293f;
+  --text: #e9eef7;
+  --muted: #a5b0cf;
+  --accent: #64d2ff;
+  --accent-soft: rgba(100, 210, 255, 0.16);
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, sans-serif;
+  background: radial-gradient(circle at top, rgba(100, 210, 255, 0.12), transparent 30%),
+    linear-gradient(180deg, #0b101f 0%, #101727 100%);
+  color: var(--text);
+}
+
+.page-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px 40px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: center;
+  padding: 18px 22px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: rgba(20, 28, 46, 0.92);
+  backdrop-filter: blur(14px);
+  margin-bottom: 32px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.brand-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #64d2ff, #3b6df2);
+  color: #0b1020;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.topbar strong {
+  display: block;
+  font-size: 1.05rem;
+}
+
+.topbar p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.profile-layout {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-card,
+.content-panel {
+  background: rgba(18, 24, 40, 0.94);
+  border: 1px solid var(--border);
+  border-radius: 30px;
+  padding: 26px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.profile-header {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.avatar {
+  width: 82px;
+  height: 82px;
+  border-radius: 24px;
+  display: grid;
+  place-items: center;
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #0b1020;
+  background: linear-gradient(135deg, #64d2ff, #94f0ff);
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  object-fit: cover;
+}
+
+.profile-card h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.profile-meta {
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.stats-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 24px;
+}
+
+.stat-block {
+  padding: 16px;
+  border: 1px solid rgba(100, 210, 255, 0.12);
+  border-radius: 18px;
+  background: rgba(100, 210, 255, 0.06);
+}
+
+.stat-block span {
+  display: block;
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.stat-block small {
+  color: var(--muted);
+  margin-top: 6px;
+  display: block;
+}
+
+.bio-block h2 {
+  margin: 0 0 12px;
+}
+
+.bio-block p {
+  margin: 0;
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.section-title h2 {
+  margin: 0;
+}
+
+.section-title span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.review-card {
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 22px;
+  margin-bottom: 16px;
+  background: rgba(14, 20, 34, 0.96);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.review-cover {
+  width: 100px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  aspect-ratio: 3/4;
+}
+
+.review-content {
+  flex: 1;
+}
+
+.review-card:last-child {
+  margin-bottom: 0;
+}
+
+.review-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.review-meta h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.rating {
+  font-weight: 700;
+  color: #64d2ff;
+}
+
+.review-card p {
+  margin: 0 0 14px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.review-tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: #8ac4ff;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 960px) {
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    padding: 18px 14px 32px;
+  }
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .nav-links {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+/* New styles for updated layout */
+body {
+  padding: 24px 20px 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar input {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(20, 28, 46, 0.92);
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.search-bar input::placeholder {
+  color: var(--muted);
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.user-info h1 {
+  margin: 0;
+  text-align: center;
+}
+
+.favorites {
+  margin-bottom: 32px;
+}
+
+.favorites h2 {
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.game-item {
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(20, 28, 46, 0.92);
+  text-align: center;
+  font-weight: 500;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  aspect-ratio: 3/4;
+}
+
+.game-item.cover {
+  flex-direction: column;
+  height: auto;
+  padding: 8px;
+}
+
+.game-item.cover img {
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  aspect-ratio: 3/4;
+}
+
+.game-item.cover p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.current-last-games {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.game-playing, .last-played {
+  text-align: center;
+}
+
+.game-playing h3, .last-played h3 {
+  margin: 0 0 12px;
+  color: var(--accent);
+}
+
+.last-review h2 {
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+.profile-sections {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.section-link {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(20, 28, 46, 0.92);
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.section-link:hover {
+  border-color: var(--accent);
+  background: rgba(20, 28, 46, 0.95);
+  transform: translateY(-2px);
+}
+
+.section-link h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  color: var(--accent);
+}
+
+.section-link p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 960px) {
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+  .current-last-games {
+    grid-template-columns: 1fr;
+  }
+  .games-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .profile-sections {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reviews and Games Pages Styles */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.reviews-list .review-card {
+  margin-bottom: 0;
+}
+
+.games-finished-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.finished-game {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(20, 28, 46, 0.92);
+}
+
+.finished-game .game-cover {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  aspect-ratio: 3/4;
+}
+
+.finished-game h3 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.finished-game .game-genre {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 10px 16px;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.back-link:hover {
+  background: rgba(100, 210, 255, 0.1);
+}
