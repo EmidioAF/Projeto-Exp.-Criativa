@@ -211,3 +211,10 @@ body {
     font-size: 1.5rem;
   }
 }
+/* GRID das reviews */
+.reviews-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+
