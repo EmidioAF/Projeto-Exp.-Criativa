@@ -126,9 +126,31 @@ body {
   width: 100px;
   height: auto;
   border-radius: 8px;
-  object-fit: cover;
-  aspect-ratio: 3/4;
+  aspect-ratio: 3 / 4;
   flex-shrink: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.review-card.disco-elysium .review-cover {
+  background-image: url("DELI.jpg");
+}
+
+.review-card.gow-ragnarok .review-cover {
+  background-image: url("GOWrag.jpg");
+}
+
+.review-card.botw .review-cover {
+  background-image: url("BOTW.png");
+}
+
+.review-card.witcher3 .review-cover {
+  background-image: url("TW3.jpg");
+}
+
+.review-card.cyberpunk-2077 .review-cover {
+  background-image: url("Cy2077.jpg");
 }
 
 .review-content {
@@ -217,4 +239,3 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 16px;
 }
-
