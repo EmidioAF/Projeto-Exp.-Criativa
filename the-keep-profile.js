@@ -1,35 +1,35 @@
 const favoritesData = [
-  { name: "The Witcher 3: Wild Hunt",                img: "https://via.placeholder.com/150x200?text=The+Witcher+3" },
-  { name: "Red Dead Redemption 2",                   img: "https://via.placeholder.com/150x200?text=Red+Dead+Redemption+2" },
-  { name: "The Legend of Zelda: Breath of the Wild", img: "BOTW.png" },
-  { name: "Cyberpunk 2077",                          img: "https://via.placeholder.com/150x200?text=Cyberpunk+2077" },
+  { name: "The Witcher 3: Wild Hunt",                className: "witcher3" },
+  { name: "Red Dead Redemption 2",                   className: "rdr2" },
+  { name: "The Legend of Zelda: Breath of the Wild", className: "botw" },
+  { name: "Cyberpunk 2077",                          className: "cyberpunk-2077" },
 ];
 
 const reviewsData = [
   {
     title:  "Disco Elysium",
-    img:    "DELI.jpg",
+    className: "disco-elysium",
     rating: "5.0",
     text:   "Diálogo afiado e escolhas profundas. Um dos melhores RPGs narrativos da última década.",
     tags:   "RPG • Narrativa • Investigação",
   },
   {
     title:  "God of War Ragnarök",
-    img:    "GOWrag.jpg",
+    className: "gow-ragnarok",
     rating: "4.8",
     text:   "Uma sequência épica que supera o original em escala e profundidade emocional.",
     tags:   "Ação • Aventura • Mitologia",
   },
   {
     title:  "The Legend of Zelda: Breath of the Wild",
-    img:    "BOTW.png",
+    className: "botw",
     rating: "5.0",
     text:   "Liberdade absoluta num mundo aberto magistralmente construído.",
     tags:   "Aventura • Open World • Puzzle",
   },
   {
     title:  "Cyberpunk 2077",
-    img:    "https://via.placeholder.com/150x200?text=Cyberpunk+2077",
+    className: "cyberpunk-2077",
     rating: "4.2",
     text:   "Apesar do lançamento conturbado, Night City é um dos mundos mais ricos do gaming.",
     tags:   "RPG • FPS • Futuro",
@@ -127,18 +127,19 @@ function buildFavoritesEditor() {
     const item = document.createElement("div");
     item.className = "favorite-edit-item";
     item.innerHTML = `
-      <img src="${fav.img}" alt="${fav.name}" id="favPreview${i}">
+      <div class="favorite-edit-preview ${fav.className}" id="favPreview${i}"></div>
       <div class="favorite-edit-inputs">
         <input type="text" class="edit-input fav-name-input" data-index="${i}"
                placeholder="Nome do jogo" value="${fav.name}">
         <input type="text" class="edit-input fav-img-input" data-index="${i}"
-               placeholder="URL da capa" value="${fav.img}">
+               placeholder="URL da capa" value="">
       </div>
     `;
     list.appendChild(item);
 
     item.querySelector(".fav-img-input").addEventListener("input", (e) => {
-      document.getElementById(`favPreview${i}`).src = e.target.value;
+      const preview = document.getElementById(`favPreview${i}`);
+      preview.style.backgroundImage = e.target.value ? `url('${e.target.value}')` : "";
     });
   });
 }
@@ -152,7 +153,7 @@ function buildReviewSelector() {
     opt.className = "review-option" + (i === state.featuredReviewIndex ? " active" : "");
     opt.dataset.reviewId = i;
     opt.innerHTML = `
-      <img src="${review.img}" alt="${review.title}" class="review-option-img">
+      <div class="review-option-img ${review.className}"></div>
       <div class="review-option-info">
         <span class="review-option-title">${review.title}</span>
         <span class="review-option-rating">⭐ ${review.rating}</span>
@@ -236,8 +237,9 @@ function applyStateToPage() {
   document.getElementById("lastGameImg").alt          = state.lastGame.name;
 
   const review = reviewsData[state.featuredReviewIndex];
-  document.getElementById("featuredReviewImg").src             = review.img;
-  document.getElementById("featuredReviewImg").alt             = review.title;
+  const featuredReviewCover = document.getElementById("featuredReviewCover");
+  featuredReviewCover.className = `review-cover featured-review ${review.className}`;
+  featuredReviewCover.setAttribute("aria-label", review.title);
   document.getElementById("featuredReviewTitle").textContent   = review.title;
   document.getElementById("featuredReviewRating").textContent  = review.rating;
   document.getElementById("featuredReviewText").textContent    = review.text;
