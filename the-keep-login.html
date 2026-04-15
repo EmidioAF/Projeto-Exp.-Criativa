@@ -9,14 +9,9 @@
 <body>
 
   <header class="topbar">
-    <div class="brand">
+    <a href="index.html" class="brand">
       <img src="thelogo.PNG" alt="The Keep Logo" class="brand-logo">
-    </div>
-    <nav class="nav-links">
-      <a href="the-keep-profile.html">Perfil</a>
-      <a href="#menu-principal">Menu Principal</a>
-      <a href="the-keep-login.html">Login</a>
-    </nav>
+    </a>
     <div class="search-bar">
       <input type="text" placeholder="Pesquisar jogos, reviews..." />
     </div>
@@ -92,96 +87,6 @@
     </div>
   </main>
 
-  <script>
-    // Alterna entre Login e Cadastro
-    function showTab(tab) {
-      const isLogin = tab === 'login';
-      document.getElementById('form-login').style.display   = isLogin ? 'flex' : 'none';
-      document.getElementById('form-cadastro').style.display = isLogin ? 'none' : 'flex';
-      document.getElementById('tab-login').classList.toggle('active', isLogin);
-      document.getElementById('tab-cadastro').classList.toggle('active', !isLogin);
-      limparMensagens();
-    }
-
-    function limparMensagens() {
-      ['login-msg', 'cadastro-msg'].forEach(id => {
-        const el = document.getElementById(id);
-        el.style.display = 'none';
-        el.className = 'msg';
-        el.textContent = '';
-      });
-    }
-
-    function mostrarMsg(id, texto, tipo) {
-      const el = document.getElementById(id);
-      el.textContent = texto;
-      el.className = 'msg ' + tipo;
-      el.style.display = 'block';
-    }
-
-    // Validação e lógica de Login (front-end apenas)
-    function fazerLogin() {
-      const email = document.getElementById('login-email').value.trim();
-      const senha = document.getElementById('login-senha').value;
-
-      if (!email || !senha) {
-        mostrarMsg('login-msg', 'Preencha todos os campos.', 'erro');
-        return;
-      }
-      if (!validarEmail(email)) {
-        mostrarMsg('login-msg', 'E-mail inválido.', 'erro');
-        return;
-      }
-
-      // Aqui você conectará ao backend futuramente
-      // Exemplo: fetch('/api/login', { method: 'POST', body: JSON.stringify({email, senha}) })
-      mostrarMsg('login-msg', 'Login realizado com sucesso! Redirecionando...', 'sucesso');
-      setTimeout(() => { window.location.href = 'the-keep-profile.html'; }, 1500);
-    }
-
-    // Validação e lógica de Cadastro (front-end apenas)
-    function fazerCadastro() {
-      const nome      = document.getElementById('cad-nome').value.trim();
-      const email     = document.getElementById('cad-email').value.trim();
-      const senha     = document.getElementById('cad-senha').value;
-      const confirmar = document.getElementById('cad-confirmar').value;
-
-      if (!nome || !email || !senha || !confirmar) {
-        mostrarMsg('cadastro-msg', 'Preencha todos os campos.', 'erro');
-        return;
-      }
-      if (!validarEmail(email)) {
-        mostrarMsg('cadastro-msg', 'E-mail inválido.', 'erro');
-        return;
-      }
-      if (senha.length < 6) {
-        mostrarMsg('cadastro-msg', 'A senha precisa ter pelo menos 6 caracteres.', 'erro');
-        return;
-      }
-      if (senha !== confirmar) {
-        mostrarMsg('cadastro-msg', 'As senhas não coincidem.', 'erro');
-        return;
-      }
-
-      // Aqui você conectará ao backend futuramente
-      // Exemplo: fetch('/api/cadastro', { method: 'POST', body: JSON.stringify({nome, email, senha}) })
-      mostrarMsg('cadastro-msg', 'Conta criada com sucesso! Redirecionando...', 'sucesso');
-      setTimeout(() => { window.location.href = 'the-keep-profile.html'; }, 1500);
-    }
-
-    function validarEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
-    // Permite envio com Enter
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        const loginVisible = document.getElementById('form-login').style.display !== 'none';
-        if (loginVisible) fazerLogin();
-        else fazerCadastro();
-      }
-    });
-  </script>
-
+  <script src="the-keep-login.js"></script>
 </body>
 </html>
