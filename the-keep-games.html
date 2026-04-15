@@ -4,37 +4,27 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Keep | Jogos Finalizados</title>
-  <link rel="stylesheet" href="the-keep-profile.css" />
+  <link rel="stylesheet" href="the-keep-games.css" />
 </head>
 <body>
   <header class="topbar">
-    <div class="brand">
+    <a href="index.html" class="brand">
       <img src="thelogo.PNG" alt="The Keep Logo" class="brand-logo">
-    </div>
-    <nav class="nav-links">
-      <a href="the-keep-profile.html">Perfil</a>
-      <a href="#menu-principal">Menu Principal</a>
-    </nav>
+    </a>
     <div class="search-bar">
-      <input type="text" placeholder="Pesquisar jogos, reviews..." />
+      <input id="gameSearchInput" type="text" placeholder="Pesquisar jogos, reviews..." />
     </div>
   </header>
 
   <main class="profile-layout">
 <section class="profile-card">
-  <h1>Jogos Finalizados por Julio</h1>
+  <h1>Jogos Finalizados por XxRogerinMitoxX</h1>  
   
-  <div class="games-finished-grid"> <div class="finished-game">
-      <div class="poster-wrapper">
-        <img src="DELI.jpg" alt="Disco Elysium" class="game-cover">
-      </div>
-      <div class="game-rating">
-        <span class="stars">★★★★½</span>
-      </div>
-    </div>
+  <div class="games-finished-grid" id="gamesFinishedGrid"></div>
 
-    </div> <a href="the-keep-profile.html" class="back-link">← Voltar ao Perfil</a>
+  <a href="the-keep-profile.html" class="back-link">← Voltar ao Perfil</a>
 </section>
   </main>
+  <script src="the-keep-games.js"></script>
 </body>
 </html>
