@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Keep | Início</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a href="index.html" class="brand">
+      <img src="thelogo.PNG" alt="The Keep Logo" class="brand-logo" />
+      <div>
+        <strong>The Keep</strong>
+        <p>Jogos, reviews e tendências</p>
+      </div>
+    </a>
+    <div class="topbar-actions">
+      <a href="the-keep-login.html" class="btn-secondary topbar-login">Login</a>
+      <div class="search-bar">
+        <input id="landingSearch" type="search" placeholder="Pesquisar jogos e reviews" />
+      </div>
+    </div>
+  </header>
+
+  <main class="landing-main">
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Bem-vindo ao The Keep</span>
+        <h1>Os jogos em alta, as reviews mais fortes e o seu perfil sempre acessível.</h1>
+        <p>Veja agora os 5 jogos mais jogados, os 5 com reviews mais altas e as 4 reviews mais bem avaliadas do site.</p>
+        <div class="hero-actions">
+          <a href="the-keep-login.html" class="btn-primary">Fazer login</a>
+          <a href="the-keep-profile.html" class="btn-secondary">Ver perfil</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="popular-games">
+      <div class="section-header">
+        <div>
+          <p class="section-label">Em alta</p>
+          <h2>5 jogos mais jogados</h2>
+        </div>
+      </div>
+      <div class="cards-grid" id="mostPlayedList"></div>
+    </section>
+
+    <section class="section" id="top-rated-games">
+      <div class="section-header">
+        <div>
+          <p class="section-label">Nota máxima</p>
+          <h2>5 jogos com reviews mais altas</h2>
+        </div>
+      </div>
+      <div class="cards-grid" id="topRatedGamesList"></div>
+    </section>
+
+    <section class="section" id="top-reviews">
+      <div class="section-header">
+        <div>
+          <p class="section-label">Destaques</p>
+          <h2>4 reviews mais bem avaliadas</h2>
+        </div>
+      </div>
+      <div class="cards-grid" id="topReviewsList"></div>
+    </section>
+  </main>
+
+  <script src="index.js"></script>
+</body>
+</html>
