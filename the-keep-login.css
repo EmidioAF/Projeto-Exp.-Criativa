@@ -1,223 +1,260 @@
-/* =============================================
-   THE KEEP — Login / Cadastro
-   Compatível com the-keep-profile.css
-   ============================================= */
-
-/* ---- Reset básico ---- */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-/* ---- Variáveis (mesma paleta do projeto) ---- */
 :root {
-  --bg:        #0e0e12;
-  --surface:   #1a1a22;
-  --border:    #2e2e3a;
-  --accent:    #144fd8;
-  --accent-h:  #144fd8;
-  --text:      #e8e8f0;
-  --text-muted:#888899;
-  --error:     #e05555;
-  --success:   #4caf7d;
-  --radius:    10px;
-  --topbar-h:  64px;
+  color-scheme: dark;
+  --bg: #0f1320;
+  --surface: #161c2f;
+  --surface-soft: #1f293f;
+  --surface-strong: rgba(20, 28, 46, 0.96);
+  --text: #e9eef7;
+  --muted: #a5b0cf;
+  --accent: #64d2ff;
+  --accent-soft: rgba(100, 210, 255, 0.16);
+  --border: rgba(255, 255, 255, 0.08);
+  --radius: 24px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Segoe UI', system-ui, sans-serif;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  font-family: Inter, system-ui, sans-serif;
+  color: var(--text);
+  background: radial-gradient(circle at top, rgba(100, 210, 255, 0.12), transparent 28%),
+    linear-gradient(180deg, #0b101f 0%, #101727 100%);
 }
 
-/* ---- Topbar (idêntica ao projeto) ---- */
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 100;
-  height: var(--topbar-h);
-  background: #13131a;
-  border-bottom: 1px solid var(--border);
+  z-index: 10;
   display: flex;
   align-items: center;
-  gap: 24px;
-  padding: 0 24px;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 24px;
+  background: rgba(20, 28, 46, 0.92);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  backdrop-filter: blur(14px);
 }
 
 .brand-logo {
-  height: 40px;
+  height: 60px;
+  width: auto;
   object-fit: contain;
 }
 
 .nav-links {
   display: flex;
+  flex-wrap: wrap;
   gap: 18px;
+  align-items: center;
 }
+
 .nav-links a {
-  color: var(--text-muted);
+  color: var(--muted);
   text-decoration: none;
-  font-size: 0.9rem;
-  transition: color .2s;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
 }
-.nav-links a:hover { color: var(--accent); }
+
+.nav-links a:hover {
+  color: var(--accent);
+}
 
 .search-bar {
-  margin-left: auto;
+  display: flex;
+  align-items: center;
 }
-.search-bar input {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 6px;
-  color: var(--text);
-  padding: 8px 14px;
-  font-size: 0.88rem;
-  width: 220px;
-  outline: none;
-  transition: border-color .2s;
-}
-.search-bar input:focus { border-color: var(--accent); }
 
-/* ---- Layout principal ---- */
+.search-bar input {
+  width: 220px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(20, 28, 46, 0.92);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.search-bar input:focus {
+  border-color: var(--accent);
+}
+
 .login-main {
-  flex: 1;
+  min-height: calc(100vh - 104px);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 16px;
+  padding: 40px 16px 60px;
 }
 
-/* ---- Card central ---- */
 .auth-card {
-  background: var(--surface);
+  width: min(420px, 100%);
+  background: rgba(18, 24, 40, 0.94);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  width: 100%;
-  max-width: 420px;
-  padding: 32px 36px;
-  box-shadow: 0 8px 40px rgba(0,0,0,.5);
+  border-radius: 30px;
+  padding: 34px 30px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
 }
 
-/* ---- Abas ---- */
 .auth-tabs {
   display: flex;
-  gap: 0;
+  gap: 8px;
   margin-bottom: 28px;
-  background: var(--bg);
-  border-radius: 8px;
-  padding: 4px;
+  background: rgba(15, 22, 38, 0.95);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 6px;
 }
 
 .tab-btn {
   flex: 1;
-  background: transparent;
   border: none;
-  border-radius: 6px;
-  color: var(--text-muted);
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 9px 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 16px;
+  padding: 12px 0;
   cursor: pointer;
-  transition: background .2s, color .2s;
+  transition: background 0.2s ease, color 0.2s ease;
 }
-.tab-btn.active {
-  background: var(--accent);
-  color: #0e0e12;
-}
-.tab-btn:not(.active):hover { color: var(--text); }
 
-/* ---- Formulário ---- */
+.tab-btn.active {
+  background: linear-gradient(180deg, rgba(100, 210, 255, 0.18), rgba(100, 210, 255, 0.08));
+  color: var(--text);
+}
+
+.tab-btn:not(.active):hover {
+  color: var(--text);
+}
+
 .auth-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  animation: fadeIn .25s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
+  gap: 18px;
 }
 
 .form-title {
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
   color: var(--text);
 }
+
 .form-subtitle {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-top: -8px;
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-top: -6px;
 }
 
-/* ---- Campos ---- */
 .field-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
 }
 
 .field-group label {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-muted);
+  color: var(--muted);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  letter-spacing: .04em;
 }
 
 .field-group input {
-  background: var(--bg);
+  background: rgba(20, 28, 46, 0.96);
   border: 1px solid var(--border);
-  border-radius: 7px;
+  border-radius: 14px;
   color: var(--text);
-  padding: 11px 14px;
-  font-size: 0.95rem;
+  padding: 14px 16px;
+  font-size: 0.96rem;
   outline: none;
-  transition: border-color .2s, box-shadow .2s;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
-.field-group input::placeholder { color: #555566; }
+
+.field-group input::placeholder {
+  color: var(--muted);
+}
+
 .field-group input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(201,168,76,.15);
+  box-shadow: 0 0 0 4px rgba(100, 210, 255, 0.12);
 }
 
-/* ---- Botão principal ---- */
 .btn-primary {
-  background: var(--accent);
-  color: #0e0e12;
+  width: 100%;
   border: none;
-  border-radius: 7px;
+  border-radius: 16px;
+  padding: 14px 18px;
+  background: linear-gradient(180deg, #64d2ff, #4bb4ff);
+  color: #08121e;
   font-size: 0.95rem;
   font-weight: 700;
-  padding: 12px;
   cursor: pointer;
-  margin-top: 4px;
-  transition: background .2s, transform .1s;
+  transition: transform 0.2s ease, filter 0.2s ease;
 }
-.btn-primary:hover  { background: var(--accent-h); }
-.btn-primary:active { transform: scale(.98); }
 
-/* ---- Link de alternância ---- */
+.btn-primary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
 .switch-hint {
   text-align: center;
-  font-size: 0.84rem;
-  color: var(--text-muted);
+  color: var(--muted);
+  font-size: 0.92rem;
 }
+
 .switch-hint a {
   color: var(--accent);
+  font-weight: 700;
   text-decoration: none;
-  font-weight: 600;
 }
-.switch-hint a:hover { text-decoration: underline; }
 
-/* ---- Mensagens de feedback ---- */
-.msg {
-  padding: 10px 14px;
-  border-radius: 7px;
-  font-size: 0.88rem;
-  font-weight: 500;
+.switch-hint a:hover {
+  text-decoration: underline;
 }
-.msg.erro   { background: rgba(224,85,85,.15);  border: 1px solid var(--error);   color: var(--error);   }
-.msg.sucesso{ background: rgba(76,175,125,.15); border: 1px solid var(--success); color: var(--success); }
+
+.msg {
+  padding: 12px 14px;
+  border-radius: 14px;
+  font-size: 0.9rem;
+}
+
+.msg.erro {
+  background: rgba(224, 85, 85, 0.14);
+  border: 1px solid rgba(224, 85, 85, 0.4);
+  color: #ff8080;
+}
+
+.msg.sucesso {
+  background: rgba(100, 210, 255, 0.15);
+  border: 1px solid rgba(100, 210, 255, 0.4);
+  color: #a3f0ff;
+}
+
+@media (max-width: 720px) {
+  .topbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .auth-card {
+    padding: 28px 22px;
+  }
+
+  .search-bar input {
+    width: 100%;
+  }
+}
 
 /* ---- Responsivo ---- */
 @media (max-width: 480px) {
