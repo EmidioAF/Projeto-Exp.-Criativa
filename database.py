@@ -21,8 +21,12 @@ def criar_usuario(nome, email, senha):
     cursor.execute(sql, valores)
     conn.commit()
 
+    usuario_id = cursor.lastrowid
+
     cursor.close()
     conn.close()
+
+    return usuario_id
 
 def autenticar_usuario(email, senha):
     conn = get_connection()
