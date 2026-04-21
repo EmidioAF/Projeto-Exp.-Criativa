@@ -48,3 +48,7 @@ INSERT INTO jogos (titulo, genero, plataforma, imagem_url) VALUES
 ('Horizon Forbidden West', 'Aventura/Open World', 'PS5', 'Hor.jpg'),
 ('Red Dead Redemption 2', 'Aventura/Open World', 'PC/PS4/Xbox', 'RDR2.png'),
 ('The Witcher 3: Wild Hunt', 'RPG/Open World', 'PC/PS5/Xbox', 'TW3.jpg');
+
+-- Cadastro de usuário (senha armazenada como hash bcrypt em produção)
+INSERT INTO usuarios (nome, email, senha) VALUES
+('XxRogerinMitoxX', 'teste1@gmail.com', 'teste123');
