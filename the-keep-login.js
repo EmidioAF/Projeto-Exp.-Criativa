@@ -29,54 +29,39 @@ document.addEventListener("DOMContentLoaded", () => {
     el.style.display = "block";
   }
 
-  function validarEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  function redirecionarPerfil(el, texto) {
+    mostrarMsg(el, texto, "sucesso");
+    setTimeout(() => {
+      window.location.href = "the-keep-profile.html";
+    }, 700);
   }
 
   window.showTab = showTab;
 
   window.fazerLogin = () => {
     const email = document.getElementById("login-email").value.trim();
-    const senha = document.getElementById("login-senha").value;
+    const senha = document.getElementById("login-senha").value.trim();
+
     if (!email || !senha) {
-      mostrarMsg(loginMsg, "Preencha todos os campos.", "erro");
+      mostrarMsg(loginMsg, "Preencha e-mail e senha para continuar.", "erro");
       return;
     }
-    if (!validarEmail(email)) {
-      mostrarMsg(loginMsg, "E-mail inválido.", "erro");
-      return;
-    }
-    mostrarMsg(loginMsg, "Login realizado com sucesso! Redirecionando...", "sucesso");
-    setTimeout(() => {
-      window.location.href = "the-keep-profile.html";
-    }, 1200);
+
+    redirecionarPerfil(loginMsg, "Login de simulação realizado! Redirecionando...");
   };
 
   window.fazerCadastro = () => {
     const nome = document.getElementById("cad-nome").value.trim();
     const email = document.getElementById("cad-email").value.trim();
-    const senha = document.getElementById("cad-senha").value;
-    const confirmar = document.getElementById("cad-confirmar").value;
+    const senha = document.getElementById("cad-senha").value.trim();
+    const confirmar = document.getElementById("cad-confirmar").value.trim();
+
     if (!nome || !email || !senha || !confirmar) {
-      mostrarMsg(signupMsg, "Preencha todos os campos.", "erro");
+      mostrarMsg(signupMsg, "Preencha todos os campos para continuar.", "erro");
       return;
     }
-    if (!validarEmail(email)) {
-      mostrarMsg(signupMsg, "E-mail inválido.", "erro");
-      return;
-    }
-    if (senha.length < 6) {
-      mostrarMsg(signupMsg, "A senha precisa ter pelo menos 6 caracteres.", "erro");
-      return;
-    }
-    if (senha !== confirmar) {
-      mostrarMsg(signupMsg, "As senhas não coincidem.", "erro");
-      return;
-    }
-    mostrarMsg(signupMsg, "Conta criada com sucesso! Redirecionando...", "sucesso");
-    setTimeout(() => {
-      window.location.href = "the-keep-profile.html";
-    }, 1200);
+
+    redirecionarPerfil(signupMsg, "Cadastro de simulação criado! Redirecionando...");
   };
 
   document.addEventListener("keydown", (event) => {
