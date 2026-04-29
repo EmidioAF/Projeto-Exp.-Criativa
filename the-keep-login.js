@@ -50,16 +50,36 @@ document.addEventListener("DOMContentLoaded", () => {
     redirecionarPerfil(loginMsg, "Login de simulação realizado! Redirecionando...");
   };
 
-  window.fazerCadastro = () => {
-    const nome = document.getElementById("cad-nome").value.trim();
-    const email = document.getElementById("cad-email").value.trim();
-    const senha = document.getElementById("cad-senha").value.trim();
-    const confirmar = document.getElementById("cad-confirmar").value.trim();
+window.fazerCadastro = () => {
+  const nome = document.getElementById("cad-nome").value.trim();
+  const email = document.getElementById("cad-email").value.trim();
+  const senha = document.getElementById("cad-senha").value.trim();
+  const confirmar = document.getElementById("cad-confirmar").value.trim();
 
-    if (!nome || !email || !senha || !confirmar) {
-      mostrarMsg(signupMsg, "Preencha todos os campos para continuar.", "erro");
-      return;
-    }
+  if (!nome || !email || !senha || !confirmar) {
+    mostrarMsg(signupMsg, "Preencha todos os campos para continuar.", "erro");
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    mostrarMsg(signupMsg, "Por favor, insira um e-mail válido.", "erro");
+    return;
+  }
+
+  if (senha.length < 8) {
+    mostrarMsg(signupMsg, "A senha deve ter no mínimo 8 caracteres.", "erro");
+    return;
+  }
+
+  if (senha !== confirmar) {
+    mostrarMsg(signupMsg, "As senhas não coincidem.", "erro");
+    return;
+  }
+
+  mostrarMsg(signupMsg, "Cadastro realizado com sucesso!", "sucesso");
+  
+  console.log("Dados validados:", { nome, email, senha });
 
     redirecionarPerfil(signupMsg, "Cadastro de simulação criado! Redirecionando...");
   };
