@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Biblioteca — The Keep{% endblock %}
+{% block content %}
+<div class="page-header">
+  <h1>Biblioteca</h1>
+  <form class="search-form" method="get" action="/biblioteca">
+    <input type="text" name="q" value="{{ q }}" placeholder="Buscar jogo..." />
+    <select name="genero">
+      <option value="">Todos os gêneros</option>
+      {% for g in generos %}
+        <option value="{{ g.genero }}" {% if g.genero == genero_sel %}selected{% endif %}>{{ g.genero }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit" class="btn-primary">Filtrar</button>
+  </form>
+</div>
+
+<div class="game-grid">
+  {% if jogos %}
+    {% for jogo in jogos %}
+    <a href="/jogo/{{ jogo.id }}" class="game-card">
+      <div class="game-cover">
+        <img src="{{ jogo.capa_url or '/static/img/game_default.png' }}" alt="{{ jogo.nome }}" loading="lazy" />
+      </div>
+      <div class="game-info">
+        <h3>{{ jogo.nome }}</h3>
+        <span class="badge-genero">{{ jogo.genero or '—' }}</span>
+        <div class="stars-mini" title="{{ jogo.media_reviews }}/5">
+          {% for i in range(1, 6) %}
+            <span class="{% if jogo.media_reviews >= i %}star-on{% else %}star-off{% endif %}">★</span>
+          {% endfor %}
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  {% else %}
+    <p class="empty-state">Nenhum jogo encontrado.</p>
+  {% endif %}
+</div>
+{% endblock %}

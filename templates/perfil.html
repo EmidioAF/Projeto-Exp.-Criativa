@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}Perfil — The Keep{% endblock %}
+{% block content %}
+{% set qp = request.query_params %}
+<div class="perfil-wrap">
+  <div class="perfil-sidebar">
+    <img src="{{ usuario.foto_url or '/static/img/avatar_default.png' }}" class="avatar-lg" alt="{{ usuario.username }}" />
+    <h2>{{ usuario.username }}</h2>
+    <p class="text-muted">{{ usuario.email }}</p>
+    {% if usuario.is_admin %}<span class="badge-admin">Administrador</span>{% endif %}
+  </div>
+
+  <div class="perfil-main">
+    {% if qp.get('sucesso') %}<p class="msg-ok">Alterações salvas!</p>{% endif %}
+    {% if qp.get('erro') %}<p class="msg-erro">Erro: {{ qp.get('erro') }}</p>{% endif %}
+
+    <details class="accordion">
+      <summary>Editar Perfil</summary>
+      <form method="post" action="/perfil/editar" class="form-inline">
+        <label>Username</label>
+        <input type="text" name="username" value="{{ usuario.username }}" required />
+        <label>Email</label>
+        <input type="email" name="email" value="{{ usuario.email }}" required />
+        <label>URL da Foto</label>
+        <input type="url" name="foto_url" value="{{ usuario.foto_url or '' }}" placeholder="https://..." />
+        <button type="submit" class="btn-primary">Salvar</button>
+      </form>
+    </details>
+
+    <details class="accordion">
+      <summary>Alterar Senha</summary>
+      <form method="post" action="/perfil/senha" class="form-inline">
+        <label>Senha Atual</label>
+        <input type="password" name="senha_atual" required />
+        <label>Nova Senha</label>
+        <input type="password" name="nova_senha" required minlength="6" />
+        <button type="submit" class="btn-primary">Alterar</button>
+      </form>
+    </details>
+
+    <details class="accordion accordion-danger">
+      <summary>Excluir Conta</summary>
+      <form method="post" action="/perfil/excluir" class="form-inline">
+        <p>Esta ação é <strong>irreversível</strong>.</p>
+        <label>Confirme sua senha</label>
+        <input type="password" name="senha" required />
+        <button type="submit" class="btn-danger">Excluir minha conta</button>
+      </form>
+    </details>
+
+    <hr />
+
+    <h3>Meus Favoritos ({{ favoritos|length }})</h3>
+    <div class="game-grid-sm">
+      {% for j in favoritos %}
+        <a href="/jogo/{{ j.id }}" class="game-card-sm">{{ j.nome }}</a>
+      {% else %}
+        <p class="text-muted">Nenhum favorito ainda.</p>
+      {% endfor %}
+    </div>
+
+    <h3>Jogando Agora ({{ jogando|length }})</h3>
+    <div class="game-grid-sm">
+      {% for j in jogando %}
+        <a href="/jogo/{{ j.id }}" class="game-card-sm">{{ j.nome }}</a>
+      {% else %}
+        <p class="text-muted">Nenhum jogo marcado.</p>
+      {% endfor %}
+    </div>
+
+    <h3>Jogados ({{ jogados|length }})</h3>
+    <div class="game-grid-sm">
+      {% for j in jogados %}
+        <a href="/jogo/{{ j.id }}" class="game-card-sm">{{ j.nome }}</a>
+      {% else %}
+        <p class="text-muted">Nenhum jogo concluído.</p>
+      {% endfor %}
+    </div>
+
+    <h3>Minhas Reviews</h3>
+    {% for r in minhas_reviews %}
+      <div class="review-item">
+        <div>
+          <a href="/jogo/{{ r.jogo_id }}"><strong>{{ r.jogo_nome }}</strong></a>
+          <div class="stars-mini">
+            {% for i in range(1, 6) %}
+              <span class="{% if r.nota >= i %}star-on{% else %}star-off{% endif %}">★</span>
+            {% endfor %}
+          </div>
+          <p>{{ r.comentario or '—' }}</p>
+        </div>
+      </div>
+    {% else %}
+      <p class="text-muted">Sem reviews ainda.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Admin — The Keep{% endblock %}
+{% block content %}
+<div class="admin-wrap">
+  <h1>⚙ Painel Admin</h1>
+  <div class="admin-stats">
+    <div class="stat-card"><span>{{ jogos|length }}</span> Jogos</div>
+    <div class="stat-card"><span>{{ usuarios|length }}</span> Usuários</div>
+    <div class="stat-card"><span>{{ total_reviews }}</span> Reviews</div>
+  </div>
+
+  <section>
+    <div class="section-header">
+      <h2>Jogos</h2>
+      <a href="/admin/jogo/novo" class="btn-primary">+ Novo Jogo</a>
+    </div>
+    <table class="admin-table">
+      <thead><tr><th>Nome</th><th>Gênero</th><th>Média</th><th>Ações</th></tr></thead>
+      <tbody>
+      {% for j in jogos %}
+        <tr>
+          <td><a href="/jogo/{{ j.id }}">{{ j.nome }}</a></td>
+          <td>{{ j.genero or '—' }}</td>
+          <td>{{ "%.1f"|format(j.media_reviews|float) }}</td>
+          <td>
+            <a href="/admin/jogo/{{ j.id }}/editar" class="btn-xs btn-outline">Editar</a>
+            <form method="post" action="/admin/jogo/{{ j.id }}/excluir" style="display:inline"
+                  onsubmit="return confirm('Remover {{ j.nome }}?')">
+              <button type="submit" class="btn-xs btn-danger">Remover</button>
+            </form>
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Usuários</h2>
+    <table class="admin-table">
+      <thead><tr><th>Username</th><th>Email</th><th>Admin?</th><th>Ações</th></tr></thead>
+      <tbody>
+      {% for u in usuarios %}
+        <tr>
+          <td>{{ u.username }}</td>
+          <td>{{ u.email }}</td>
+          <td>{% if u.is_admin %}✔{% else %}—{% endif %}</td>
+          <td>
+            {% if u.id != usuario.id %}
+            <form method="post" action="/admin/usuario/{{ u.id }}/toggle-admin" style="display:inline">
+              <button type="submit" class="btn-xs btn-outline">
+                {% if u.is_admin %}Remover Admin{% else %}Tornar Admin{% endif %}
+              </button>
+            </form>
+            <form method="post" action="/admin/usuario/{{ u.id }}/excluir" style="display:inline"
+                  onsubmit="return confirm('Excluir usuário {{ u.username }}?')">
+              <button type="submit" class="btn-xs btn-danger">Excluir</button>
+            </form>
+            {% else %}
+            <span class="text-muted">(você)</span>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
+{% endblock %}
