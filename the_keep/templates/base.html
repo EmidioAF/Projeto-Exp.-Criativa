@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}The Keep{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css" />
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="nav-brand">
+      <img src="/static/img/logo.png" alt="The Keep" />
+    </a>
+    <div class="nav-links">
+      <a href="/biblioteca">Biblioteca</a>
+      {% if usuario %}
+        <a href="/perfil">{{ usuario.username }}</a>
+        {% if usuario.is_admin %}<a href="/admin" class="badge-admin">Admin</a>{% endif %}
+        <a href="/logout" class="btn-outline">Sair</a>
+      {% else %}
+        <a href="/login">Entrar</a>
+        <a href="/cadastro" class="btn-primary">Cadastrar</a>
+      {% endif %}
+      <button id="theme-toggle" title="Alternar tema">☀</button>
+    </div>
+  </nav>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <script src="/static/js/app.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

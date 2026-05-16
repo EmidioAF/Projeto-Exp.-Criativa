@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Cadastro — The Keep{% endblock %}
+{% block content %}
+<div class="auth-wrap">
+  <div class="auth-card">
+    <h2 class="auth-title">Criar Conta</h2>
+    {% if erro %}<p class="msg-erro">{{ erro }}</p>{% endif %}
+    <form method="post" action="/cadastro" class="auth-form">
+      <label>Username</label>
+      <input type="text" name="username" required placeholder="mínimo 3 caracteres"
+             minlength="3" pattern=".{3,}" title="Mínimo de 3 caracteres" />
+      <label>Email</label>
+      <input type="email" name="email" required placeholder="usuario@dominio.com" />
+      <label>Senha</label>
+      <input type="password" name="senha" required placeholder="mínimo 6 caracteres" minlength="6" />
+      <button type="submit" class="btn-primary w-full">Criar Conta</button>
+    </form>
+    <p class="auth-alt">Já tem conta? <a href="/login">Entrar</a></p>
+  </div>
+</div>
+{% endblock %}
