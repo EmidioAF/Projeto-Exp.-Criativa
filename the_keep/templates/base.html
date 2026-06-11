@@ -32,6 +32,7 @@
     {% block content %}{% endblock %}
   </main>
 
+  <script>window.USUARIO_LOGADO = {{ 1 if usuario else 0 }};</script>
   <script src="/static/js/app.js"></script>
   {% block scripts %}{% endblock %}
 </body>
