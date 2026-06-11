@@ -3,7 +3,7 @@ from fastapi import APIRouter, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 from database import query_one, execute
-from auth import hash_senha, verificar_senha, criar_sessao
+from auth import hash_senha, verificar_senha, criar_sessao, SESSION_MAX_AGE
 from deps import get_usuario_atual
 
 router = APIRouter()
@@ -31,7 +31,7 @@ def login_action(request: Request, email: str = Form(...), senha: str = Form(...
         })
     token = criar_sessao(usuario["id"])
     resp = RedirectResponse("/biblioteca", status_code=302)
-    resp.set_cookie("session", token, httponly=True, max_age=1800, samesite="lax")
+    resp.set_cookie("session", token, httponly=True, max_age=SESSION_MAX_AGE, samesite="lax")
     return resp
 
 
