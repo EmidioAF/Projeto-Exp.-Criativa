@@ -16,10 +16,10 @@ themeBtn && themeBtn.addEventListener('click', () => {
 
 // ---------- Logout automático por inatividade (500 segundos) ----------
 (function () {
-  const TIMEOUT_MS = 500 * 1000; // 500 segundos
-  const AVISO_MS   = 30 * 1000;  // aviso 30s antes
+  const TIMEOUT_MS = 500 * 1000;  // 500 segundos
+  const AVISO_MS   = 300 * 1000;  // aviso 300 segundos antes
 
-  if (!document.cookie.includes('session')) return;
+  if (!window.USUARIO_LOGADO) return;
 
   let timerLogout, timerAviso;
   let avisoEl = null;
@@ -29,7 +29,7 @@ themeBtn && themeBtn.addEventListener('click', () => {
     avisoEl = document.createElement('div');
     avisoEl.id = 'inatividade-aviso';
     avisoEl.innerHTML = `
-      <span>⚠ Você será deslogado em <strong id="inatividade-contador">30</strong>s por inatividade.</span>
+      <span>⚠ Você será deslogado em <strong id="inatividade-contador">3</strong>s por inatividade.</span>
       <button onclick="resetInatividade()">Continuar</button>
     `;
     Object.assign(avisoEl.style, {
@@ -42,7 +42,7 @@ themeBtn && themeBtn.addEventListener('click', () => {
     });
     document.body.appendChild(avisoEl);
 
-    let restante = 30;
+    let restante = 3;
     const intervalo = setInterval(() => {
       restante--;
       const el = document.getElementById('inatividade-contador');
@@ -78,7 +78,7 @@ themeBtn && themeBtn.addEventListener('click', () => {
     iniciarTimers();
   };
 
-  ['mousemove', 'keydown', 'click', 'scroll', 'touchstart'].forEach(ev => {
+  ['keydown', 'click', 'touchstart'].forEach(ev => {
     document.addEventListener(ev, () => {
       removerAviso();
       iniciarTimers();
