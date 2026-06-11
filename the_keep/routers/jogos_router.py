@@ -80,7 +80,8 @@ def salvar_review(request: Request, jogo_id: int, nota: int = Form(...), comenta
         execute("INSERT INTO reviews (usuario_id, jogo_id, nota, comentario) VALUES (%s,%s,%s,%s)",
                 (usuario["id"], jogo_id, nota, comentario))
     media = query_one("SELECT AVG(nota) as m FROM reviews WHERE jogo_id=%s", (jogo_id,))
-    execute("UPDATE jogos SET media_reviews=%s WHERE id=%s", (media["m"] or 0, jogo_id))
+    media_val = round(float(media["m"]), 2) if media and media["m"] is not None else 0.0
+    execute("UPDATE jogos SET media_reviews=%s WHERE id=%s", (media_val, jogo_id))
     return RedirectResponse(f"/jogo/{jogo_id}", status_code=302)
 
 
@@ -94,7 +95,8 @@ def excluir_review(request: Request, review_id: int):
         jogo_id = rev["jogo_id"]
         execute("DELETE FROM reviews WHERE id=%s", (review_id,))
         media = query_one("SELECT AVG(nota) as m FROM reviews WHERE jogo_id=%s", (jogo_id,))
-        execute("UPDATE jogos SET media_reviews=%s WHERE id=%s", (media["m"] or 0, jogo_id))
+        media_val = round(float(media["m"]), 2) if media and media["m"] is not None else 0.0
+        execute("UPDATE jogos SET media_reviews=%s WHERE id=%s", (media_val, jogo_id))
         return RedirectResponse(f"/jogo/{jogo_id}", status_code=302)
     return RedirectResponse("/biblioteca", status_code=302)
 
