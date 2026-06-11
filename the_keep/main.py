@@ -1,12 +1,24 @@
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
 
 from routers import auth_router, jogos_router, perfil_router, admin_router
 from deps import get_usuario_atual
+from auth import ler_sessao
 
 app = FastAPI(title="The Keep")
+
+@app.middleware("http")
+async def limpar_sessao_expirada(request: Request, call_next):
+    token = request.cookies.get("session")
+    if token and ler_sessao(token) is None:
+        rotas_publicas = ["/login", "/cadastro", "/static", "/"]
+        if not any(request.url.path.startswith(r) for r in rotas_publicas):
+            response = RedirectResponse("/login", status_code=302)
+            response.delete_cookie("session")
+            return response
+    return await call_next(request)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
