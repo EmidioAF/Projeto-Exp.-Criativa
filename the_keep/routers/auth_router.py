@@ -46,6 +46,7 @@ def cadastro_action(
     username: str = Form(...),
     email: str = Form(...),
     senha: str = Form(...),
+    confirmar_senha: str = Form(...),
 ):
     if len(username.strip()) < 3:
         return templates.TemplateResponse("cadastro.html", {
@@ -57,6 +58,19 @@ def cadastro_action(
             "request": request,
             "erro": "Email inválido. Use um formato como usuario@dominio.com."
         })
+    
+    if senha != confirmar_senha:
+        return templates.TemplateResponse("cadastro.html", {"request": request, "erro": "As senhas não coincidem."})
+
+    senha_forte = (
+        len(senha) >= 6 and
+        len(re.findall(r"\d", senha)) >= 2 and
+        len(re.findall(r"[A-Z]", senha)) >= 1 and
+        bool(re.search(r"[^A-Za-z0-9]", senha))
+    )
+    if not senha_forte:
+        return templates.TemplateResponse("cadastro.html", {"request": request, "erro": "Senha fraca. Use ao menos 6 caracteres, 1 maiúscula, 2 números e 1 caractere especial."})
+
     if query_one("SELECT id FROM usuarios WHERE email = %s", (email,)):
         return templates.TemplateResponse("cadastro.html", {
             "request": request, "erro": "Email já cadastrado."
