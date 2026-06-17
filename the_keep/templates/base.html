@@ -17,7 +17,9 @@
     <div class="nav-links">
       <a href="/biblioteca">Biblioteca</a>
       {% if usuario %}
-        <a href="/perfil">{{ usuario.username }}</a>
+        <a href="/perfil" class="nav-avatar-link">
+          <img src="{{ usuario.foto_url or '/static/img/avatar_default.png' }}" alt="{{ usuario.username }}" class="nav-avatar">
+        </a>
         {% if usuario.is_admin %}<a href="/admin" class="badge-admin">Admin</a>{% endif %}
         <a href="/logout" class="btn-outline">Sair</a>
       {% else %}
