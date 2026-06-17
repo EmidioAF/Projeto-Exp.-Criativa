@@ -361,3 +361,4 @@ hr { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
   .perfil-sidebar { width: 100%; }
   .game-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
 }
+.nav-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;vertical-align:middle;}
