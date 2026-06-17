@@ -1,5 +1,14 @@
 {% extends "base.html" %}
-{% block title %}Cadastro — The Keep{% endblock %}
+{% block title %}Cadastro — The Keep
+<script>
+document.getElementById("senha")?.addEventListener("input", function(){
+ const v=this.value;
+ const ok=v.length>=6 && (v.match(/[A-Z]/g)||[]).length>=1 && (v.match(/[0-9]/g)||[]).length>=2 && /[^A-Za-z0-9]/.test(v);
+ const m=document.getElementById("senha-msg");
+ m.textContent=ok?"Senha forte":"Senha fraca";
+});
+</script>
+{% endblock %}
 {% block content %}
 <div class="auth-wrap">
   <div class="auth-card">
@@ -12,10 +21,23 @@
       <label>Email</label>
       <input type="email" name="email" required placeholder="usuario@dominio.com" />
       <label>Senha</label>
-      <input type="password" name="senha" required placeholder="mínimo 6 caracteres" minlength="6" />
+      <input type="password" name="senha" id="senha" required
+placeholder="6+ caracteres, 1 maiúscula, 2 números e 1 especial" />
+<small id="senha-msg"></small>
+<label>Confirmar Senha</label>
+<input type="password" name="confirmar_senha" required placeholder="Repita a senha" />
       <button type="submit" class="btn-primary w-full">Criar Conta</button>
     </form>
     <p class="auth-alt">Já tem conta? <a href="/login">Entrar</a></p>
   </div>
 </div>
+
+<script>
+document.getElementById("senha")?.addEventListener("input", function(){
+ const v=this.value;
+ const ok=v.length>=6 && (v.match(/[A-Z]/g)||[]).length>=1 && (v.match(/[0-9]/g)||[]).length>=2 && /[^A-Za-z0-9]/.test(v);
+ const m=document.getElementById("senha-msg");
+ m.textContent=ok?"Senha forte":"Senha fraca";
+});
+</script>
 {% endblock %}
