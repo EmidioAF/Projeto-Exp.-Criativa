@@ -1,4 +1,4 @@
-# The Keep https://youtu.be/PB_6lq09IJs?is=-d6-j0vUxrPLAYp7 
+# The Keep https://www.youtube.com/watch?v=1svQX4HkYWQ
 Plataforma de biblioteca e reviews de jogos — Projeto Acadêmico (Experiência Criativa)
 
 ## Stack
