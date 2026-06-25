@@ -7,6 +7,55 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/static/css/style.css" />
+  <!-- Aplica o tema salvo ANTES da renderização para evitar flash e logo errada -->
+  <script>
+    (function(){
+      var t = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <nav class="navbar">
+    <a href="/" class="nav-brand">
+      <img src="/static/img/logo_transparent.png" alt="The Keep" class="logo-dark" />
+      <img src="/static/img/logo_light.png" alt="The Keep" class="logo-light" />
+    </a>
+    <div class="nav-links">
+      <a href="/biblioteca">Biblioteca</a>
+      {% if usuario %}
+        <a href="/perfil" class="nav-avatar-link">
+          <img src="{{ usuario.foto_url or '/static/img/avatar_default.png' }}" alt="{{ usuario.username }}" class="nav-avatar">
+        </a>
+        {% if usuario.is_admin %}<a href="/admin" class="badge-admin">Admin</a>{% endif %}
+        <a href="/logout" class="btn-outline">Sair</a>
+      {% else %}
+        <a href="/login">Entrar</a>
+        <a href="/cadastro" class="btn-primary">Cadastrar</a>
+      {% endif %}
+      <button id="theme-toggle" title="Alternar tema">☀</button>
+    </div>
+  </nav>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <script>window.USUARIO_LOGADO = {{ 1 if usuario else 0 }};</script>
+  <script src="/static/js/app.js"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}The Keep{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/css/style.css" />
   {% block head %}{% endblock %}
 </head>
 <body>
